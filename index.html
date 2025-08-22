@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
     <meta name="description" content="Portfolio de Bochra Tayaichi - Développeuse Web et Spécialiste BI">
-<meta name="keywords" content="portfolio, développement web, business intelligence">
-<meta name="author" content="Bochra Tayaichi">
+    <meta name="keywords" content="portfolio, développement web, business intelligence">
+    <meta name="author" content="Bochra Tayaichi">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bochra Tayaichi | Portfolio</title>
@@ -32,12 +32,17 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden; /* Correction du décalage à droite */
+            width: 100%;
+            position: relative;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             line-height: 1.7;
             color: var(--text);
             background: #f0f4f8;
-            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
@@ -700,6 +705,59 @@
             100% { transform: translateY(0px); }
         }
 
+        /* Nouvelles animations ajoutées */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        @keyframes pulse {
+            0% {transform: scale(1);}
+            50% {transform: scale(1.05);}
+            100% {transform: scale(1);}
+        }
+        
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        
+        @keyframes slideInLeft {
+            from {transform: translateX(-100px); opacity: 0;}
+            to {transform: translateX(0); opacity: 1;}
+        }
+        
+        @keyframes slideInRight {
+            from {transform: translateX(100px); opacity: 0;}
+            to {transform: translateX(0); opacity: 1;}
+        }
+        
+        /* Classes d'animation */
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 2s forwards;
+        }
+        
+        .animate-slideInLeft {
+            animation: slideInLeft 1s forwards;
+        }
+        
+        .animate-slideInRight {
+            animation: slideInRight 1s forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.5s; }
+        .delay-2 { animation-delay: 1s; }
+        .delay-3 { animation-delay: 1.5s; }
+
         /* Back to top button */
         .back-to-top {
             position: fixed;
@@ -930,11 +988,42 @@
             }
             
             section {
-                padding: 4rem 1.5rem;
+                padding: 4rem 1rem; /* Correction du décalage */
             }
             
             .gallery-images {
                 grid-template-columns: 1fr;
+            }
+            
+            /* Correction supplémentaire pour mobile */
+            .container {
+                padding: 0 1rem;
+            }
+        }
+        
+        /* Correction spécifique pour les très petits écrans */
+        @media (max-width: 400px) {
+            .profile {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
@@ -974,15 +1063,15 @@
     <section id="home">
         <div class="container hero">
             <div class="hero-content">
-                <h1>Bochra Tayaichi</h1>
-                <p>👋 Spécialiste en Business Intelligence & Développement Web passionnée par la transformation des données en solutions visuelles et interactives. Je crée des expériences digitales qui allient analyse et design.</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn">Voir mes projets</a>
+                <h1 data-animate="fadeInDown">Bochra Tayaichi</h1>
+                <p data-animate="fadeInUp" data-delay="0.2s">👋 Spécialiste en Business Intelligence & Développement Web passionnée par la transformation des données en solutions visuelles et interactives. Je crée des expériences digitales qui allient analyse et design.</p>
+                <div class="hero-buttons" data-animate="fadeInUp" data-delay="0.4s">
+                    <a href="#projects" class="btn animate-pulse">Voir mes projets</a>
                     <a href="#contact" class="btn btn-outline">Contactez-moi</a>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="download.jpg" alt="Bochra Tayaichi" class="profile">
+                <img src="images/download.jpg" alt="Bochra Tayaichi" class="profile">
             </div>
         </div>
     </section>
@@ -991,12 +1080,12 @@
     <section id="projects">
         <div class="container">
             <div class="section-title">
-                <h2>Projets Récents</h2>
+                <h2 data-animate="fadeIn">Projets Récents</h2>
             </div>
             
             <div class="projects-container">
                 <!-- Projet 1 -->
-                <div class="project-card" data-project="voyage">
+                <div class="project-card" data-project="voyage" data-animate="fadeInUp" data-delay="0.2s">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=2070" alt="Site d'agence de voyage">
                         <div class="project-overlay">
@@ -1011,7 +1100,7 @@
                 </div>
                 
                 <!-- Projet 2 -->
-                <div class="project-card" data-project="predictif">
+                <div class="project-card" data-project="predictif" data-animate="fadeInUp" data-delay="0.4s">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070" alt="Analyse prédictive">
                         <div class="project-overlay">
@@ -1026,7 +1115,7 @@
                 </div>
                 
                 <!-- Projet 3 -->
-                <div class="project-card" data-project="dashboard">
+                <div class="project-card" data-project="dashboard" data-animate="fadeInUp" data-delay="0.6s">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070" alt="Tableaux de bord interactifs">
                         <div class="project-overlay">
@@ -1041,7 +1130,7 @@
                 </div>
                 
                 <!-- Projet 4 -->
-                <div class="project-card" data-project="drone">
+                <div class="project-card" data-project="drone" data-animate="fadeInUp" data-delay="0.8s">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?q=80&w=2070" alt="Site e-commerce de drones">
                         <div class="project-overlay">
@@ -1068,13 +1157,13 @@
             <div class="gallery-content">
                 <div class="gallery-images">
                     <div class="gallery-image">
-                        <img src="agen(3).jpg" alt="Page d'accueil">
+                        <img src="images/agen(3).jpg" alt="Page d'accueil">
                     </div>
                     <div class="gallery-image">
-                        <img src="agen(4).jpg" alt="Page de destinations">
+                        <img src="images/agen(4).jpg" alt="Page de destinations">
                     </div>
                     <div class="gallery-image">
-                        <img src="agen(5).jpg" alt="Page de réservation">
+                        <img src="images/agen(5).jpg" alt="Page de réservation">
                     </div>
                 
                 </div>
@@ -1097,40 +1186,40 @@
             <div class="gallery-content">
                 <div class="gallery-images">
                     <div class="gallery-image">
-                        <img src="appweb (1).png" alt="Dashboard principal">
+                        <img src="images/appweb (1).png" alt="Dashboard principal">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (2).png" alt="Segmentation client">
+                        <img src="images/appweb (2).png" alt="Segmentation client">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (3).png" alt="Analyse prédictive">
+                        <img src="images/appweb (3).png" alt="Analyse prédictive">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (4).png" alt="Rapports détaillés">
+                        <img src="images/appweb (4).png" alt="Rapports détaillés">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (5).png" alt="Rapports détaillés">
+                        <img src="images/appweb (5).png" alt="Rapports détaillés">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (6).png" alt="Rapports détaillés">
+                        <img src="images/appweb (6).png" alt="Rapports détaillés">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (7).png" alt="Rapports détaillés">
+                        <img src="images/appweb (7).png" alt="Rapports détaillés">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (8).png" alt="Rapports détaillés">
+                        <img src="images/appweb (8).png" alt="Rapports détaillés">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (9).png" alt="Rapports détaillés">
+                        <img src="images/appweb (9).png" alt="Rapports détaillés">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (10).png" alt="Rapports détaillés">
+                        <img src="images/appweb (10).png" alt="Rapports détaillés">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (11).png" alt="Rapports détaillés">
+                        <img src="images/appweb (11).png" alt="Rapports détaillés">
                     </div>
                     <div class="gallery-image">
-                        <img src="appweb (12).png" alt="Rapports détaillés">
+                        <img src="images/appweb (12).png" alt="Rapports détaillés">
                     </div>
                 </div>
                 
@@ -1152,16 +1241,16 @@
             <div class="gallery-content">
                 <div class="gallery-images">
                     <div class="gallery-image">
-                        <img src="dashb (1).png" alt="Dashboard principal">
+                        <img src="images/dashb (1).png" alt="Dashboard principal">
                     </div>
                     <div class="gallery-image">
-                        <img src="dashb (2).png" alt="Vue analytique">
+                        <img src="images/dashb (2).png" alt="Vue analytique">
                     </div>
                     <div class="gallery-image">
-                        <img src="dashb (3).png" alt="Rapports détaillés">
+                        <img src="images/dashb (3).png" alt="Rapports détaillés">
                     </div>
                     <div class="gallery-image">
-                        <img src="dashb (4).png" alt="Visualisation des données">
+                        <img src="images/dashb (4).png" alt="Visualisation des données">
                     </div>
                 </div>
                 
@@ -1183,67 +1272,67 @@
             <div class="gallery-content">
                 <div class="gallery-images">
                     <div class="gallery-image">
-                        <img src="dr (1).jfif" alt="Page d'accueil">
+                        <img src="images/dr (1).jfif" alt="Page d'accueil">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (2).jfif" alt="Catalogue produits">
+                        <img src="images/dr (2).jfif" alt="Catalogue produits">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (3).jfif" alt="Page produit détaillée">
+                        <img src="images/dr (3).jfif" alt="Page produit détaillée">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (4).jfif" alt="Processus de paiement">
+                        <img src="images/dr (4).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (5).jfif" alt="Processus de paiement">
+                        <img src="images/dr (5).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (6).jfif" alt="Processus de paiement">
+                        <img src="images/dr (6).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (7).jfif" alt="Processus de paiement">
+                        <img src="images/dr (7).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (8).jfif" alt="Processus de paiement">
+                        <img src="images/dr (8).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (9).jfif" alt="Processus de paiement">
+                        <img src="images/dr (9).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (10).jfif" alt="Processus de paiement">
+                        <img src="images/dr (10).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (11).jfif" alt="Processus de paiement">
+                        <img src="images/dr (11).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (12).jfif" alt="Processus de paiement">
+                        <img src="images/dr (12).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (13).jfif" alt="Processus de paiement">
+                        <img src="images/dr (13).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (14).jfif" alt="Processus de paiement">
+                        <img src="images/dr (14).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (15).jfif" alt="Processus de paiement">
+                        <img src="images/dr (15).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (16).jfif" alt="Processus de paiement">
+                        <img src="images/dr (16).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (17).jfif" alt="Processus de paiement">
+                        <img src="images/dr (17).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (18).jfif" alt="Processus de paiement">
+                        <img src="images/dr (18).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (19).jfif" alt="Processus de paiement">
+                        <img src="images/dr (19).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (20).jfif" alt="Processus de paiement">
+                        <img src="images/dr (20).jfif" alt="Processus de paiement">
                     </div>
                     <div class="gallery-image">
-                        <img src="dr (21).jfif" alt="Processus de paiement">
+                        <img src="images/dr (21).jfif" alt="Processus de paiement">
                     </div>
                 </div>
 
@@ -1261,11 +1350,11 @@
     <section id="skills">
         <div class="container">
             <div class="section-title">
-                <h2>Domaines d'Expertise</h2>
+                <h2 data-animate="fadeIn">Domaines d'Expertise</h2>
             </div>
             
             <div class="skills-container">
-                <div class="skill-category">
+                <div class="skill-category" data-animate="fadeInUp" data-delay="0.2s">
                     <h3>Développement Web</h3>
                     <ul class="skill-list">
                         <li>Applications Web Complètes</li>
@@ -1276,7 +1365,7 @@
                     </ul>
                 </div>
                 
-                <div class="skill-category">
+                <div class="skill-category" data-animate="fadeInUp" data-delay="0.4s">
                     <h3>Business Intelligence</h3>
                     <ul class="skill-list">
                         <li>Processus ETL</li>
@@ -1287,14 +1376,14 @@
                     </ul>
                 </div>
                 
-                <div class="skill-category">
+                <div class="skill-category" data-animate="fadeInUp" data-delay="0.6s">
                     <h3>Design Graphique</h3>
                     <ul class="skill-list">
                         <li>Identité Visuelle</li>
                         <li>Affiches & Supports Promotionnels</li>
                         <li>CV Professionnels</li>
                         <li>Menus & Brochures</li>
-                        <li>Design d'Interface</li>
+                        
                     </ul>
                 </div>
             </div>
@@ -1305,10 +1394,10 @@
     <section id="about">
         <div class="container">
             <div class="section-title">
-                <h2>À propos de moi</h2>
+                <h2 data-animate="fadeIn">À propos de moi</h2>
             </div>
             
-            <div class="about-content">
+            <div class="about-content" data-animate="fadeInUp">
                 <p>Je suis une professionnelle polyvalente à l'intersection des données, de la technologie et du design. Mon parcours combine une expertise technique solide en développement web et en Business Intelligence avec une sensibilité créative pour le design graphique.</p>
                 
                 <p>Dans le domaine du <span class="highlight">développement web</span>, je crée des applications complètes, des sites e-commerce performants et des plateformes interactives qui offrent des expériences utilisateur fluides et engageantes.</p>
@@ -1319,7 +1408,7 @@
                 
                 <p>Je suis constamment à la recherche de nouveaux défis où je peux mettre à profit cette combinaison unique de compétences pour créer des solutions innovantes à fort impact.</p>
                 
-                <a href="#contact" class="btn" style="margin-top: 2rem;">Travaillons ensemble</a>
+                <a href="#contact" class="btn animate-pulse" style="margin-top: 2rem;">Travaillons ensemble</a>
             </div>
         </div>
     </section>
@@ -1328,11 +1417,11 @@
     <section id="contact">
         <div class="container">
             <div class="section-title">
-                <h2 style="color: white;">Contactez-moi</h2>
+                <h2 style="color: white;" data-animate="fadeIn">Contactez-moi</h2>
             </div>
             
             <div class="contact-container">
-                <div class="contact-info">
+                <div class="contact-info" data-animate="slideInLeft">
                     <h3>Coordonnées</h3>
                     <div class="contact-methods">
                         <div class="contact-item">
@@ -1340,7 +1429,7 @@
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <h4>Email</h4>
-                            <p>aychabochra@gmail.com</p>
+                            <p>contact@bochratayaichi.com</p>
                         </div>
                         
                         <div class="contact-item">
@@ -1361,7 +1450,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-form">
+                <div class="contact-form" data-animate="slideInRight">
                     <h3>Envoyez un message</h3>
                     <form id="contactForm" action="https://formspree.io/f/mdkdadlr" method="POST">
                         <div class="form-group">
@@ -1571,6 +1660,27 @@
                 });
             }
         });
+        
+        // Nouvelles animations au défilement
+        function checkAnimation() {
+            const elements = document.querySelectorAll('[data-animate]');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    const animation = element.getAttribute('data-animate');
+                    const delay = element.getAttribute('data-delay') || 0;
+                    
+                    element.style.animation = `${animation} 1s forwards ${delay}s`;
+                    element.removeAttribute('data-animate');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkAnimation);
+        window.addEventListener('load', checkAnimation);
     </script>
 </body>
 </html>
